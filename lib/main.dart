@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,16 +18,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   final String title;
 
-  const MyHomePage({super.key, required this.title});
-
-  // Função para abrir um URL no navegador
-  _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,47 +26,22 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            const UserAccountsDrawerHeader(
-              accountName: Text('Tiago Mateus Carvalho'),
-              accountEmail: Text('tiagomc123@hotmail.com'),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.blue,
-                child: Text(
-                  'TC',
-                  style: TextStyle(fontSize: 20, color: Colors.white),
+      body: Container(
+        color: const Color(0xffadd9df), // Define o fundo cinza
+        child: Center(
+          child: Container(
+            width: 190,
+            height: 190,
+            decoration: BoxDecoration(
+              border: Border.all(
+                  color: Colors.green, width: 2.0), // Define a borda vermelha
+              image: const DecorationImage(
+                image: NetworkImage(
+                  'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
                 ),
               ),
             ),
-            ListTile(
-              leading: const Icon(Icons.article_outlined),
-              title: const Text('Curso de Angular'),
-              onTap: () {
-                _launchURL('https://www.youtube.com/watch?v=vJt_K1bFUeA&t=1s');
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.article_outlined),
-              title: const Text('Curso de Java'),
-              onTap: () {
-                _launchURL('https://www.youtube.com/watch?v=V5I11DRE-1M');
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.article_outlined),
-              title: const Text('Curso de IA generativa'),
-              onTap: () {
-                _launchURL('https://www.youtube.com/watch?v=gozr-2677-0');
-              },
-            ),
-          ],
-        ),
-      ),
-      body: const Center(
-        child: Text(
-          'Hello, World!',
+          ),
         ),
       ),
     );
