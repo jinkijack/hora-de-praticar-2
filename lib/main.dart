@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'MEU APP'),
     );
   }
 }
@@ -26,23 +26,23 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Container(
-        color: const Color(0xffadd9df), // Define o fundo cinza
-        child: Center(
-          child: Container(
-            width: 190,
-            height: 190,
-            decoration: BoxDecoration(
-              border: Border.all(
-                  color: Colors.green, width: 2.0), // Define a borda vermelha
-              image: const DecorationImage(
-                image: NetworkImage(
-                  'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
-                ),
-              ),
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Image.network(
+            'https://i.imgur.com/fzgwYzq.png',
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          Positioned(
+            top: 20.0,
+            child: ElevatedButton(
+              onPressed: () {},
+              child: const Text('Clique para Prosseguir'),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
